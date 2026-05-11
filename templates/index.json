@@ -14,7 +14,7 @@
       "name": "Image Hero",
       "settings": {
         "image": "shopify://shop_images/marcos-paulo-prado-sMDR-TntI44-unsplash.jpg",
-        "min_height": 90,
+        "min_height": 95,
         "overlay_opacity": 15,
         "text_alignment": "center",
         "color_scheme": "scheme-1",
