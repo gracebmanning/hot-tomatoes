@@ -1,48 +1,33 @@
 {% comment %}
-  Image Hero — full-bleed image with text overlay.
-  Used for homepage hero and editorial moments.
+Image Hero — full-bleed image with text overlay.
+Used for homepage hero and editorial moments.
 {% endcomment %}
 
-<section
-  class="image-hero color-{{ section.settings.color_scheme }}"
-  style="
-    --hero-min-height: {{ section.settings.min_height }}vh;
-    --hero-text-align: {{ section.settings.text_alignment }};
-    --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-  "
->
+<section class="image-hero color-{{ section.settings.color_scheme }}"
+  style="--hero-min-height: {{ section.settings.min_height }}vh; --hero-text-align: {{ section.settings.text_alignment }}; --hero-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};">
   {%- if section.settings.image -%}
-    <img
-      src="{{ section.settings.image | image_url: width: 3000 }}"
-      srcset="
+  <img src="{{ section.settings.image | image_url: width: 3000 }}" srcset="
         {{ section.settings.image | image_url: width: 750 }} 750w,
         {{ section.settings.image | image_url: width: 1100 }} 1100w,
         {{ section.settings.image | image_url: width: 1500 }} 1500w,
         {{ section.settings.image | image_url: width: 2200 }} 2200w,
         {{ section.settings.image | image_url: width: 3000 }} 3000w
-      "
-      sizes="100vw"
-      alt="{{ section.settings.image.alt | escape }}"
-      width="{{ section.settings.image.width }}"
-      height="{{ section.settings.image.height }}"
-      loading="{% if section.index <= 2 %}eager{% else %}lazy{% endif %}"
-      class="image-hero__image"
-    >
+      " sizes="100vw" alt="{{ section.settings.image.alt | escape }}" width="{{ section.settings.image.width }}"
+    height="{{ section.settings.image.height }}" loading="{% if section.index <= 2 %}eager{% else %}lazy{% endif %}"
+    class="image-hero__image">
   {%- endif -%}
 
-  <div class="image-hero__overlay"></div>
-
-  <div class="image-hero__content page-width">
+  <div class="image-hero__content">
     {%- if section.settings.heading != blank -%}
-      <h1 class="image-hero__heading">{{ section.settings.heading }}</h1>
+    <h1 class="image-hero__heading">{{ section.settings.heading }}</h1>
     {%- endif -%}
     {%- if section.settings.subheading != blank -%}
-      <p class="image-hero__subheading">{{ section.settings.subheading }}</p>
+    <p class="image-hero__subheading">{{ section.settings.subheading }}</p>
     {%- endif -%}
     {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
-      <a href="{{ section.settings.button_link }}" class="button button--primary image-hero__cta">
-        {{ section.settings.button_label }}
-      </a>
+    <a href="{{ section.settings.button_link }}" class="button button--primary image-hero__cta">
+      {{ section.settings.button_label }}
+    </a>
     {%- endif -%}
   </div>
 </section>
@@ -66,32 +51,31 @@
     z-index: 0;
   }
 
-  .image-hero__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(var(--color-foreground), var(--hero-overlay-opacity));
-    z-index: 1;
-  }
-
   .image-hero__content {
     position: relative;
     z-index: 2;
-    text-align: var(--hero-text-align);
+    width: 100%;
+    min-height: var(--hero-min-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: var(--hero-text-align);
     color: rgb(var(--color-background));
+    background: rgba(var(--color-foreground), var(--hero-overlay-opacity));
   }
 
   .image-hero__heading {
     font-family: var(--font-heading-family);
-    font-size: clamp(4rem, 8vw, 8rem);
+    font-size: clamp(6rem, 10vw, 10rem);
     margin: 0 0 1.5rem;
     color: rgb(var(--color-background));
   }
 
   .image-hero__subheading {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 500;
     line-height: 1.2;
-    max-width: 60rem;
+    max-width: 70rem;
     margin: 0 auto 2.5rem;
   }
 
@@ -99,7 +83,7 @@
     margin-left: 0;
   }
 
-.image-hero__cta {
+  .image-hero__cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -108,85 +92,85 @@
     font-weight: 600;
     letter-spacing: 0.12rem;
     padding: 1.8rem 3.5rem;
-}
+  }
 </style>
 
 {% schema %}
 {
-  "name": "Image Hero",
-  "tag": "section",
-  "class": "section-image-hero",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Background image"
-    },
-    {
-      "type": "range",
-      "id": "min_height",
-      "label": "Minimum height (vh)",
-      "min": 30,
-      "max": 100,
-      "step": 5,
-      "default": 70,
-      "unit": "vh"
-    },
-    {
-      "type": "range",
-      "id": "overlay_opacity",
-      "label": "Image overlay opacity",
-      "min": 0,
-      "max": 80,
-      "step": 5,
-      "default": 30,
-      "unit": "%"
-    },
-    {
-      "type": "select",
-      "id": "text_alignment",
-      "label": "Text alignment",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-2"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Heat with intent."
-    },
-    {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Small-batch hot sauce, slow-fermented with real fruit, real peppers, and a deeply unserious sense of humor."
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Shop the lineup"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "Button link"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Image Hero"
-    }
-  ]
+"name": "Image Hero",
+"tag": "section",
+"class": "section-image-hero",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "Background image"
+},
+{
+"type": "range",
+"id": "min_height",
+"label": "Minimum height (vh)",
+"min": 30,
+"max": 100,
+"step": 5,
+"default": 70,
+"unit": "vh"
+},
+{
+"type": "range",
+"id": "overlay_opacity",
+"label": "Image overlay opacity",
+"min": 0,
+"max": 80,
+"step": 5,
+"default": 30,
+"unit": "%"
+},
+{
+"type": "select",
+"id": "text_alignment",
+"label": "Text alignment",
+"options": [
+{ "value": "left", "label": "Left" },
+{ "value": "center", "label": "Center" },
+{ "value": "right", "label": "Right" }
+],
+"default": "center"
+},
+{
+"type": "color_scheme",
+"id": "color_scheme",
+"label": "Color scheme",
+"default": "scheme-2"
+},
+{
+"type": "text",
+"id": "heading",
+"label": "Heading",
+"default": "Heat with intent."
+},
+{
+"type": "textarea",
+"id": "subheading",
+"label": "Subheading",
+"default": "Small-batch hot sauce, slow-fermented with real fruit, real peppers, and a deeply unserious sense of humor."
+},
+{
+"type": "text",
+"id": "button_label",
+"label": "Button label",
+"default": "Shop the lineup"
+},
+{
+"type": "url",
+"id": "button_link",
+"label": "Button link"
+}
+],
+"presets": [
+{
+"name": "Image Hero"
+}
+]
 }
 {% endschema %}
