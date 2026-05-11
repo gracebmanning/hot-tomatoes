@@ -69,6 +69,18 @@
                 </svg>
             </div>
 
+            <div class="vine-section__thermometer">
+                <svg width="76" height="443" viewBox="0 0 76 443" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="thermometer-shape">
+                    <path
+                        d="M37.9889 0C51.5249 0 62.4979 10.973 62.4979 24.509V376.525C70.7426 383.437 75.9779 393.771 75.9779 405.317C75.9779 426.129 58.9696 443 37.9889 443C17.0082 443 0 426.129 0 405.317C0 393.771 5.23529 383.437 13.4799 376.525V24.509C13.4799 10.973 24.453 0 37.9889 0Z"
+                        fill="#F7F4F1" />
+                    <circle cx="37.9893" cy="405.622" r="25.7344" fill="#BF0603" />
+                    <rect x="25.7344" y="131.123" width="24.5092" height="280" fill="#BF0603" />
+                </svg>
+            </div>
+
+
             <h2 class="vine-section__heading vine-section__heading--punch">Heat that packs a punch.</h2>
         </div>
     </div>
@@ -136,6 +148,7 @@
     }
 
     .vine-section__bottle {
+        position: relative;
         width: 175px;
         height: auto;
         display: block;
@@ -143,6 +156,21 @@
     }
 
     .vine-section__bottle svg {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .vine-section__thermometer {
+        position: absolute;
+        width: 70px;
+        height: auto;
+        bottom: 20%;
+        display: block;
+        z-index: 2;
+    }
+
+    .vine-section__thermometer svg {
         width: 100%;
         height: auto;
         display: block;

@@ -4,13 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tomato = document.querySelector('#detachable-tomato');
     const bottleShape = document.querySelector('.bottle-shape');
+    const thermometer = document.querySelector('.thermometer-shape');
     const fireworks = document.querySelectorAll('.firework');
     const punchHeading = document.querySelector('.vine-section__heading--punch');
 
     const stageFall = document.querySelector('.vine-section__stage--fall');
     const stageBottle = document.querySelector('.vine-section__stage--bottle');
 
-    if (!tomato || !bottleShape || !punchHeading || !stageFall || !stageBottle) return;
+    if (!tomato || !bottleShape || !thermometer || !punchHeading || !stageFall || !stageBottle) return;
 
     const FALL_DISTANCE_VH = 120;
     const MAX_ROTATION = 45;
@@ -50,6 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // bottle color shifts during 0.0 -> 0.5 of stage
         const colorProgress = remap(bottleProgress, 0, 0.5);
         bottleShape.style.fill = lerpColor('2D4A30', '7A1414', colorProgress);
+
+        // thermometer fades in during 0.4 -> 0.7 of stage
+        const thermometerProgress = remap(bottleProgress, 0.4, 0.7);
+        thermometer.style.opacity = thermometerProgress;
 
         // fireworks fade in during 0.4 -> 0.7 of stage
         fireworks.forEach((firework, index) => {
