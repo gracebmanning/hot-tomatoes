@@ -5,12 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const tomato = document.querySelector('#detachable-tomato');
     const bottleShape = document.querySelector('.bottle-shape');
     const fireworks = document.querySelectorAll('.firework');
+    const punchHeading = document.querySelector('.vine-section__heading--punch');
 
     const stageFall = document.querySelector('.vine-section__stage--fall');
     const stageBottle = document.querySelector('.vine-section__stage--bottle');
-    const stagePunch = document.querySelector('.vine-section__stage--punch');
 
-    if (!tomato || !bottleShape || !stageFall || !stageBottle || !stagePunch) return;
+    if (!tomato || !bottleShape || !punchHeading || !stageFall || !stageBottle) return;
+
+    const FALL_DISTANCE_VH = 120;
+    const MAX_ROTATION = 45;
 
     let ticking = false;
 
@@ -32,25 +35,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return `rgb(${result.join(',')})`;
     }
 
+    function remap(value, inMin, inMax) {
+        return Math.max(0, Math.min(1, (value - inMin) / (inMax - inMin)));
+    }
+
     function update() {
         // tomato falls
         const fallProgress = getStageProgress(stageFall);
         const easedFall = fallProgress * fallProgress;
-        tomato.style.transform = `translateY(${easedFall * 100}vh) rotate(${easedFall * 45}deg)`;
+        tomato.style.transform = `translateY(${easedFall * FALL_DISTANCE_VH}vh) rotate(${easedFall * MAX_ROTATION}deg)`;
 
-        // bottle color shift (botanical green → dark wine)
         const bottleProgress = getStageProgress(stageBottle);
-        bottleShape.style.fill = lerpColor('2D4A30', '7A1414', bottleProgress);
 
-        // fireworks fade in with stagger
-        const punchProgress = getStageProgress(stagePunch);
+        // bottle color shifts during 0.0 -> 0.5 of stage
+        const colorProgress = remap(bottleProgress, 0, 0.5);
+        bottleShape.style.fill = lerpColor('2D4A30', '7A1414', colorProgress);
+
+        // fireworks fade in during 0.4 -> 0.7 of stage
         fireworks.forEach((firework, index) => {
-            const delay = index * 0.15;
-            const fireworkProgress = Math.max(0, Math.min(1, (punchProgress - delay) * 2));
+            const fireworkStart = 0.4 + index * 0.05;
+            const fireworkEnd = fireworkStart + 0.15;
+            const fireworkProgress = remap(bottleProgress, fireworkStart, fireworkEnd);
             firework.style.opacity = fireworkProgress;
-    });
+        });
 
-    ticking = false;
+        // punch heading fades in during 0.6 -> 1.0 of stage
+        const headingProgress = remap(bottleProgress, 0.6, 1.0);
+        punchHeading.style.opacity = headingProgress;
+
+        ticking = false;
     }
 
     function onScroll() {
