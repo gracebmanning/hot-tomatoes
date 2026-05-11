@@ -1842,7 +1842,7 @@ details[open] > .share-button__fallback {
 .field__input:-webkit-autofill ~ .field__button,
 .field__input:-webkit-autofill ~ .field__label,
 .customer .field input:-webkit-autofill ~ label {
-    color: rgb(0, 0, 0);
+    color: rgb(var(--color-foreground));
 }
 
 /* Text area */
@@ -3699,4 +3699,33 @@ details-disclosure > details {
     left: 12px;
     z-index: 2;
     margin: 0;
+}
+
+.card__subtitle {
+    font-family: var(--font-body-family);
+    color: rgb(var(--color-foreground));
+    opacity: 1;
+    margin: 0.25rem 0 0 0;
+    line-height: 1.3;
+    font-style: italic;
+}
+
+.product__text.subtitle {
+    font-family: var(--font-body-family);
+    color: rgb(var(--color-foreground));
+    opacity: 1;
+    font-size: 2rem;
+    margin: 0px;
+    line-height: 1.4;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+body,
+.color-scheme-1,
+.color-scheme-2,
+.color-scheme-3,
+.color-scheme-4,
+.color-scheme-5 {
+    color: rgb(var(--color-foreground));
 }

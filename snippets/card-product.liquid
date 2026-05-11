@@ -3,19 +3,23 @@
 
   Accepts:
   - card_product: {Object} Product Liquid object (optional)
-  - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
-  - image_shape: {String} Image mask to apply to the product image card. Values are "arch", "blob", "chevronleft", "chevronright", "diamond", "parallelogram", and "round". (optional)
+  - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square"
+  (optional)
+  - image_shape: {String} Image mask to apply to the product image card. Values are "arch", "blob", "chevronleft",
+  "chevronright", "diamond", "parallelogram", and "round". (optional)
   - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
   - show_vendor: {Boolean} Show the product vendor. Default: false
   - show_rating: {Boolean} Show the product rating. Default: false
   - extend_height: {Boolean} Card height extends to available container space. Default: true (optional)
   - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
-  - skip_styles: {Boolean} Don't include component styles. Useful when rendering multiple product cards in a loop. Default: false (optional)
+  - skip_styles: {Boolean} Don't include component styles. Useful when rendering multiple product cards in a loop.
+  Default: false (optional)
   - quick_add: {Boolean} Show the quick add button.
   - section_id: {String} The ID of the section that contains this card.
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
-  - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
+  - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2'
+  (optional)
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
@@ -58,7 +62,9 @@
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if card_product.featured_media -%}
-          <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+          <div
+            class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
+          >
             {%- assign heat = card_product.metafields.custom.heat_level.value -%}
             {%- if heat -%}
               <span class="heat-badge heat-badge--overlay">{{ heat.name }}</span>
@@ -164,6 +170,10 @@
               {{ card_product.title | escape }}
             </a>
           </h3>
+          {%- assign subtitle = card_product.metafields.custom.subtitle.value -%}
+          {%- if subtitle != blank -%}
+            <p class="card__subtitle">{{ subtitle | escape }}</p>
+          {%- endif -%}
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
@@ -219,10 +229,14 @@
                   endif
                 %}
                 <quantity-popover>
-                  <button class="card__information-volume-pricing-note card__information-volume-pricing-note--button card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} quantity-popover__info-button--icon-only button button button--tertiary medium-hide small-hide">
+                  <button
+                    class="card__information-volume-pricing-note card__information-volume-pricing-note--button card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} quantity-popover__info-button--icon-only button button button--tertiary medium-hide small-hide"
+                  >
                     <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
                   </button>
-                  <button class="card__information-volume-pricing-note card__information-volume-pricing-note--button card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} quantity-popover__info-button--icon-with-label button button--tertiary large-up-hide">
+                  <button
+                    class="card__information-volume-pricing-note card__information-volume-pricing-note--button card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} quantity-popover__info-button--icon-with-label button button--tertiary large-up-hide"
+                  >
                     <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
                   </button>
               {% else %}
@@ -471,9 +485,7 @@
                     <div class="quick-add__content-info__media">
                       <div class="quick-add__info">
                         {%- if card_product.featured_media -%}
-                          <div
-                            class="quick-add__product-media"
-                          >
+                          <div class="quick-add__product-media">
                             <div class="quick-add__product-container global-media-settings">
                               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                               <img
@@ -596,9 +608,7 @@
         <div
           class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
         >
-          <div
-            class="media media--transparent"
-          >
+          <div class="media media--transparent">
             {%- if placeholder_image -%}
               {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
             {%- else -%}
