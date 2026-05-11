@@ -3,15 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (prefersReducedMotion) return;
 
     const tomato = document.querySelector('#detachable-tomato');
-    const bottleShape = document.querySelector('.bottle-shape');
+    const bottle = document.querySelector('.bottle-shape');
     const thermometer = document.querySelector('.thermometer-shape');
-    const fireworks = document.querySelectorAll('.firework');
+    const thermometerFill = document.querySelector('.thermometer-fill');
+    const hotSticker = document.querySelector('.vine-section__hot-sticker');
     const punchHeading = document.querySelector('.vine-section__heading--punch');
 
     const stageFall = document.querySelector('.vine-section__stage--fall');
     const stageBottle = document.querySelector('.vine-section__stage--bottle');
 
-    if (!tomato || !bottleShape || !thermometer || !punchHeading || !stageFall || !stageBottle) return;
+    if (!tomato || !bottle || !thermometer || !thermometerFill || !punchHeading || !stageFall || !stageBottle) return;
 
     const FALL_DISTANCE_VH = 120;
     const MAX_ROTATION = 45;
@@ -50,19 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // bottle color shifts during 0.0 -> 0.5 of stage
         const colorProgress = remap(bottleProgress, 0, 0.5);
-        bottleShape.style.fill = lerpColor('2D4A30', '7A1414', colorProgress);
+        bottle.style.fill = lerpColor('2D4A30', '7A1414', colorProgress);
 
         // thermometer fades in during 0.4 -> 0.7 of stage
         const thermometerProgress = remap(bottleProgress, 0.4, 0.7);
         thermometer.style.opacity = thermometerProgress;
 
-        // fireworks fade in during 0.4 -> 0.7 of stage
-        fireworks.forEach((firework, index) => {
-            const fireworkStart = 0.4 + index * 0.05;
-            const fireworkEnd = fireworkStart + 0.15;
-            const fireworkProgress = remap(bottleProgress, fireworkStart, fireworkEnd);
-            firework.style.opacity = fireworkProgress;
-        });
+        // thermometer fills during 0.4 -> 0.9 of stage
+        const fillProgress = remap(bottleProgress, 0.4, 0.9)
+        thermometerFill.style.transform = `scaleY(${fillProgress})`;
+
+        // hot sticker fades in during 0.4 -> 0.7 of stage
+        const hotStickerProgress = remap(bottleProgress, 0.4, 0.7);
+        hotSticker.style.opacity = hotStickerProgress;
 
         // punch heading fades in during 0.6 -> 1.0 of stage
         const headingProgress = remap(bottleProgress, 0.6, 1.0);
