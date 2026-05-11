@@ -99,10 +99,16 @@
         "padding_top": 16,
         "padding_bottom": 64
       }
+    },
+    "vine_to_bottle_Wzz7Pk": {
+      "type": "vine-to-bottle",
+      "name": "Vine to Bottle",
+      "settings": {}
     }
   },
   "order": [
     "image_hero_CLGLPq",
+    "vine_to_bottle_Wzz7Pk",
     "image_with_text_Mx9Gc7",
     "featured_collection"
   ]
