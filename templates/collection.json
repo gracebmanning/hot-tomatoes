@@ -11,10 +11,25 @@
   "sections": {
     "main-collection-banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_collection_description": true,
-        "show_collection_image": false,
+        "show_collection_image": true,
         "color_scheme": "scheme-1"
+      }
+    },
+    "image_hero_collection_3kqM7g": {
+      "type": "image-hero-collection",
+      "name": "Collection Image Hero",
+      "settings": {
+        "image": "{{ collection.image }}",
+        "min_height": 60,
+        "overlay_opacity": 50,
+        "color_scheme": "scheme-2",
+        "heading": "{{ collection.title }}",
+        "subheading": "{{ collection.description }}",
+        "button_label": "",
+        "button_link": ""
       }
     },
     "main-product-grid": {
@@ -40,6 +55,7 @@
   },
   "order": [
     "main-collection-banner",
+    "image_hero_collection_3kqM7g",
     "main-product-grid"
   ]
 }

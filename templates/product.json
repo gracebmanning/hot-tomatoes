@@ -27,6 +27,13 @@
           "type": "description",
           "settings": {}
         },
+        "text_CAAL3C": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>{{ product.metafields.custom.heat_level.value.name.value }}</strong><strong>: </strong><strong>{{ product.metafields.custom.heat_level.value.shu_range.value }}</strong>",
+            "text_style": "body"
+          }
+        },
         "price": {
           "type": "price",
           "settings": {}
@@ -54,6 +61,7 @@
         "title",
         "text_kQXadt",
         "description",
+        "text_CAAL3C",
         "price",
         "variant_picker",
         "quantity_selector",
