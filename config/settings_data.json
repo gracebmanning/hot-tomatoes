@@ -179,7 +179,7 @@
       },
       "scheme-4": {
         "settings": {
-          "background": "{{ shop.brand.colors.primary[0].background }}",
+          "background": "#7a1414",
           "background_gradient": "",
           "text": "#f4f7f1",
           "button": "#f4f7f1",
