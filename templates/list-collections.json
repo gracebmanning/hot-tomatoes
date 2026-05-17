@@ -16,7 +16,7 @@
         "sort": "products_high",
         "image_ratio": "square",
         "columns_desktop": 3,
-        "columns_mobile": "1"
+        "columns_mobile": "2"
       }
     }
   },

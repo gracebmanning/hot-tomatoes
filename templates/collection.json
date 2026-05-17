@@ -11,18 +11,18 @@
   "sections": {
     "main-collection-banner": {
       "type": "main-collection-banner",
-      "disabled": true,
       "settings": {
         "show_collection_description": true,
-        "show_collection_image": true,
+        "show_collection_image": false,
         "color_scheme": "scheme-1"
       }
     },
     "image_hero_collection_3kqM7g": {
       "type": "image-hero-collection",
+      "disabled": true,
       "name": "Collection Image Hero",
       "settings": {
-        "image": "{{ collection.image }}",
+        "image": "{{ collection.metafields.custom.banner_image.value }}",
         "min_height": 60,
         "overlay_opacity": 50,
         "color_scheme": "scheme-2",
