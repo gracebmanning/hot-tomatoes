@@ -85,13 +85,65 @@
         "padding_bottom": 64
       }
     },
-    "contact_form_ttexmY": {
-      "type": "contact-form",
-      "name": "t:sections.contact-form.presets.name",
+    "featured_product_9pynHn": {
+      "type": "featured-product",
+      "blocks": {
+        "text_7UQ8j3": {
+          "type": "text",
+          "settings": {
+            "text": "Yeah, we made a hat.",
+            "text_style": "uppercase"
+          }
+        },
+        "title_9iTLm8": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_hkwr9W": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_QdM3aq": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_RVwzaW": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_qDfdyw": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "text_7UQ8j3",
+        "title_9iTLm8",
+        "price_hkwr9W",
+        "variant_picker_QdM3aq",
+        "quantity_selector_RVwzaW",
+        "buy_buttons_qDfdyw"
+      ],
+      "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "heading": "Let's get in touch.",
-        "heading_size": "h0",
+        "product": "embroidered-baseball-cap",
         "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -102,6 +154,6 @@
     "vine_to_bottle_Wzz7Pk",
     "featured_collection_XN7qtf",
     "featured_collection",
-    "contact_form_ttexmY"
+    "featured_product_9pynHn"
   ]
 }
