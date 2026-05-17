@@ -1,0 +1,255 @@
+<section class="about-page">
+  <div class="about-page__intro">
+    <p class="about-page__lead">it all began in</p>
+    <h1 class="about-page__year">2015...</h1>
+  </div>
+  <div class="about-page__surfboard">
+    <div class="about-page__surfboard-svg" aria-hidden="true">
+      {{ 'surfboard.svg' | inline_asset_content }}
+    </div>
+    <div class="about-page__surfboard-text">
+      <p class="about-page__surfboard-body">
+        ...when a local San Diego surfer started growing tomatoes in her backyard.
+      </p>
+    </div>
+  </div>
+
+  <div class="about-page__ketchup">
+    <p class="about-page__ketchup-text">
+      As a self-proclaimed condiment connoisseur, she began making ketchup on the weekends and gave it to her friends
+      &amp; neighbors.
+    </p>
+  </div>
+
+  <div class="about-page__hot-sauce">
+    <div class="about-page__hot-sauce-text">
+      <p>
+        Enjoying a plate of fries back at home after a night out with friends, she knocked over a bottle of hot sauce
+        into her plate of ketchup, and an idea was born.
+      </p>
+    </div>
+    <div class="about-page__hot-sauce-svg" aria-hidden="true">
+      {{ 'hot-sauce-spill.svg' | inline_asset_content }}
+    </div>
+  </div>
+
+  <div class="about-page__quality">
+    <h2 class="about-page__quality-heading">Dedicated to quality.</h2>
+    <p class="about-page__quality-body">
+      Every bottle of Hot Tomatoes ketchup and hot sauce made today still tastes like it was made in our backyard. In
+      fact, we source our whole fruit and fresh peppers from growers in Southern California and Baja California.
+    </p>
+    <ul class="about-page__quality-list">
+      <li>No thickeners,</li>
+      <li>No artificial colors,</li>
+      <li>No shelf stabilizers.</li>
+    </ul>
+  </div>
+
+  <div class="about-page__cta">
+    <p>
+      Ready to partake?
+      <a href="{{ collections['shop'].url | default: '/collections/all' }}"> Browse the lineup → </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .about-page {
+    width: 100%;
+    margin: 0;
+    padding: 4rem 8rem;
+    font-family: var(--font-body-family);
+    color: #38373c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-page p {
+    line-height: 1.6;
+    font-size: 2rem;
+  }
+
+  .about-page__intro {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-page__lead {
+    font-size: 2rem;
+    margin: 0;
+    text-align: center;
+  }
+
+  .about-page__year {
+    font-family: var(--font-heading-family);
+    font-size: 6rem;
+    margin: 0.25rem 0 2rem 0;
+    text-align: center;
+  }
+
+  .about-page__surfboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 6rem;
+  }
+
+  .about-page__surfboard-svg {
+    justify-self: center;
+    max-width: 300px;
+  }
+
+  .about-page__surfboard-svg svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .about-page__surfboard-text {
+    width: 100%;
+    align-self: end;
+    max-width: 410px;
+  }
+
+  .about-page__ketchup {
+    width: 100%;
+    margin: 0 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .about-page__ketchup-text {
+    text-align: center;
+    max-width: 410px;
+  }
+
+  .about-page__hot-sauce {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin: 6rem 0;
+  }
+
+  .about-page__hot-sauce-text {
+    width: 100%;
+    max-width: 410px;
+  }
+
+  .about-page__hot-sauce-svg {
+    justify-self: end;
+    max-width: 350px;
+  }
+
+  .about-page__hot-sauce-svg svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .about-page__quality {
+    text-align: center;
+    margin: 4rem auto;
+    max-width: 720px;
+  }
+
+  .about-page__quality-heading {
+    font-family: var(--font-heading-family);
+    font-size: 4rem;
+    margin: 0 0 2rem 0;
+    color: rgb(var(--color-foreground));
+  }
+
+  .about-page__quality-body {
+    margin-bottom: 1rem;
+  }
+
+  .about-page__quality-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+    text-align: left;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .about-page__quality-list li {
+    margin: 0.25rem 0;
+    font-size: 2rem;
+  }
+
+  .about-page__cta {
+    text-align: center;
+  }
+
+  .about-page__cta a {
+    color: #7a1414;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 750px) {
+    .about-page {
+      padding: 2rem 1.5rem;
+    }
+
+    .about-page p {
+      font-size: 1.7rem;
+    }
+
+    .about-page__surfboard {
+      grid-template-columns: 1fr;
+    }
+
+    .about-page__surfboard-text {
+      text-align: center;
+    }
+
+    .about-page__surfboard-svg {
+      max-width: 200px;
+    }
+
+    .about-page__hot-sauce {
+      grid-template-columns: 1fr;
+    }
+
+    .about-page__hot-sauce-text {
+      text-align: center;
+    }
+
+    .about-page__hot-sauce-svg {
+      justify-self: center;
+      margin-right: 0;
+    }
+
+    .about-page__year {
+      font-size: 3rem;
+    }
+
+    .about-page__quality-heading {
+      font-size: 2.5rem;
+    }
+
+    .about-page__quality-list li {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About Page",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "About Page"
+    }
+  ]
+}
+{% endschema %}
