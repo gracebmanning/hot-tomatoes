@@ -1,5 +1,6 @@
 <article class="recipe">
   <header class="recipe__header">
+    <a href="{{ blog.url }}" class="recipe__back-link">← All recipes</a>
     <h1 class="recipe__title">{{ article.title }}</h1>
 
     <div class="recipe__meta">
@@ -71,10 +72,6 @@
       </section>
     {% endif %}
   </div>
-
-  <footer class="recipe__footer">
-    <a href="{{ blog.url }}" class="recipe__back-link">← All recipes</a>
-  </footer>
 </article>
 
 <style>
@@ -85,10 +82,15 @@
     color: #494850;
   }
 
+  .recipe__back-link {
+    color: rgb(var(--color-foreground));
+    text-decoration: underline;
+  }
+
   .recipe__title {
     font-family: var(--font-heading-family);
     font-size: 3.5rem;
-    margin: 0 0 1.5rem 0;
+    margin: 2rem 0 1.5rem 0;
     line-height: 1.1;
   }
 
@@ -175,17 +177,6 @@
   .recipe__instructions li {
     margin-bottom: 0.75rem;
     line-height: 1.6;
-  }
-
-  .recipe__footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(var(--color-foreground), 0.1);
-  }
-
-  .recipe__back-link {
-    color: rgb(var(--color-foreground));
-    text-decoration: underline;
   }
 
   @media (max-width: 750px) {
