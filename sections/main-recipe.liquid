@@ -1,0 +1,255 @@
+<article class="recipe">
+  <header class="recipe__header">
+    <h1 class="recipe__title">{{ article.title }}</h1>
+
+    <div class="recipe__meta">
+      {% if article.metafields.custom.cook_time %}
+        <div class="recipe__meta-item">
+          <span class="recipe__meta-label">Cook time</span>
+          <span class="recipe__meta-value">{{ article.metafields.custom.cook_time }}</span>
+        </div>
+      {% endif %}
+      {% if article.metafields.custom.serves %}
+        <div class="recipe__meta-item">
+          <span class="recipe__meta-label">Serves</span>
+          <span class="recipe__meta-value">{{ article.metafields.custom.serves }}</span>
+        </div>
+      {% endif %}
+      <div class="recipe__meta-item">
+        <button type="button" class="recipe__print-button no-print" onclick="window.print()" aria-label="Print recipe">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#BF0603"
+            width="200px"
+            height="200px"
+            viewBox="0 0 512 512"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M399.95 160h-287.9C76.824 160 48 188.803 48 224v138.667h79.899V448H384.1v-85.333H464V224c0-35.197-28.825-64-64.05-64zM352 416H160V288h192v128zm32.101-352H127.899v80H384.1V64z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  {% if article.image %}
+    <div class="recipe__image">
+      <img
+        src="{{ article.image | image_url: width: 1200 }}"
+        alt="{{ article.image.alt | escape }}"
+        width="{{ article.image.width }}"
+        height="{{ article.image.height }}"
+      >
+    </div>
+  {% endif %}
+
+  <div class="recipe__body">
+    <div class="recipe__intro">
+      {{ article.content }}
+    </div>
+
+    {% if article.metafields.custom.ingredients %}
+      <section class="recipe__section">
+        <h2 class="recipe__section-heading">Ingredients</h2>
+        <ul class="recipe__ingredients">
+          {% for ingredient in article.metafields.custom.ingredients.value %}
+            <li>{{ ingredient }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if article.metafields.custom.instructions %}
+      <section class="recipe__section">
+        <h2 class="recipe__section-heading">Instructions</h2>
+        <ol class="recipe__instructions">
+          {% for step in article.metafields.custom.instructions.value %}
+            <li>{{ step }}</li>
+          {% endfor %}
+        </ol>
+      </section>
+    {% endif %}
+  </div>
+
+  <footer class="recipe__footer">
+    <a href="{{ blog.url }}" class="recipe__back-link">← All recipes</a>
+  </footer>
+</article>
+
+<style>
+  .recipe {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    color: #494850;
+  }
+
+  .recipe__title {
+    font-family: var(--font-heading-family);
+    font-size: 3.5rem;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.1;
+  }
+
+  .recipe__meta {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .recipe__meta-item {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .recipe__meta-label {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .recipe__meta-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .recipe__print-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+  }
+
+  .recipe__print-button:hover {
+    opacity: 0.6;
+  }
+
+  .recipe__print-button svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .recipe__image {
+    margin: 2rem 0 3rem 0;
+    width: 70%;
+  }
+
+  .recipe__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
+
+  .recipe__intro {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .recipe__section {
+    margin-bottom: 3rem;
+  }
+
+  .recipe__section-heading {
+    font-family: var(--font-heading-family);
+    font-size: 2rem;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .recipe__ingredients,
+  .recipe__instructions {
+    padding-left: 1.5rem;
+  }
+
+  .recipe__ingredients li,
+  .recipe__instructions li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+
+  .recipe__footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+  }
+
+  .recipe__back-link {
+    color: rgb(var(--color-foreground));
+    text-decoration: underline;
+  }
+
+  @media (max-width: 750px) {
+    .recipe {
+      padding: 2rem 1.5rem;
+    }
+
+    .recipe__title {
+      font-size: 2.5rem;
+    }
+
+    .recipe__section-heading {
+      font-size: 1.5rem;
+    }
+
+    .recipe__meta {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  @media print {
+    .header-wrapper,
+    footer,
+    .footer,
+    .breadcrumbs,
+    .recipe__back-link,
+    .no-print {
+      display: none !important;
+    }
+
+    .recipe__title {
+      font-family: var(--font-heading-family);
+      font-size: 2rem;
+      margin: 1rem 0 0 0;
+      line-height: 1.1;
+    }
+
+    .recipe {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #fff;
+      color: #000;
+    }
+
+    .recipe__section {
+      break-inside: avoid;
+    }
+
+    .recipe__image {
+      max-width: 200px;
+      margin: 1rem 0;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Recipe",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

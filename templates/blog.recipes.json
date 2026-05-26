@@ -10,16 +10,8 @@
 {
   "sections": {
     "main": {
-      "type": "main-blog",
-      "settings": {
-        "layout": "grid",
-        "show_image": true,
-        "image_height": "small",
-        "show_date": false,
-        "show_author": false,
-        "padding_top": 12,
-        "padding_bottom": 64
-      }
+      "type": "main-recipes-list",
+      "settings": {}
     }
   },
   "order": [
